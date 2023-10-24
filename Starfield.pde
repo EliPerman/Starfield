@@ -16,6 +16,14 @@ void draw(){
     starfield[i].show();
   }
 }
+void mousePressed(){
+  for(int i = 0; i < starfield.length; i++){
+   if(Math.random() < 0.01) 
+     starfield[i] = new OddballParticle();
+   else
+     starfield[i] = new Particle();
+  }
+}
 class Particle{
   double myX, myY, mySpeed, myAngle;
   int myColor;

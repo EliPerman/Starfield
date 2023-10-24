@@ -1,6 +1,7 @@
 Particle[] starfield = new Particle[1000];
 void setup(){
   size(1000, 1000);
+  noStroke();
   for(int i = 0; i < starfield.length; i++){
    if(Math.random() < 0.01) 
      starfield[i] = new OddballParticle();
@@ -22,8 +23,7 @@ class Particle{
     myX = myY = 500;
     mySpeed = Math.random()*10;
     myAngle = Math.random()*2*PI;
-    int V = (int)((Math.random()+1)*128);
-    myColor = color(V, V, V);
+    myColor = color((int)((Math.random()+1)*128));
   }
   void move(){
     myX += mySpeed*Math.cos(myAngle);

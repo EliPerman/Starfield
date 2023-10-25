@@ -2,12 +2,17 @@ Particle[] starfield = new Particle[1000];
 void setup(){
   size(1000, 1000);
   noStroke();
+  boolean value = false;
   for(int i = 0; i < starfield.length; i++){
-   if(Math.random() < 0.01) 
+   if(Math.random() < 0.003){
      starfield[i] = new OddballParticle();
-   else
+     value = true;
+   } else {
      starfield[i] = new Particle();
+   }
   }
+  if(value == false)
+    starfield[starfield.length - 1] = new OddballParticle();
 }
 void draw(){
   background(0);
@@ -17,12 +22,17 @@ void draw(){
   }
 }
 void mousePressed(){
+  boolean value = false;
   for(int i = 0; i < starfield.length; i++){
-   if(Math.random() < 0.01) 
+   if(Math.random() < 0.003){
      starfield[i] = new OddballParticle();
-   else
+     value = true;
+   } else {
      starfield[i] = new Particle();
+   }
   }
+  if(value == false)
+    starfield[starfield.length - 1] = new OddballParticle();
 }
 class Particle{
   double myX, myY, mySpeed, myAngle;
@@ -39,7 +49,11 @@ class Particle{
   }
   void show(){
     fill(myColor);
-    ellipse((float)myX, (float)myY, 10, 10);
+    pushMatrix();
+    translate((float)myX, (float)myY);
+    rotate((float)Math.atan((myY - 500)/(myX - 500)));
+    ellipse(0, 0, dist(500, 500, (float)myX, (float)myY)/25, dist(500, 500, (float)myX, (float)myY)/50);
+    popMatrix();
   }
 }
 class OddballParticle extends Particle{
